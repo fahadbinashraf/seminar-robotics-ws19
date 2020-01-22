@@ -449,7 +449,7 @@
 Dimensionality estimations of datasets is an important problem in the field of pattern recognition and knowledge discovery.
  In this paper, different methods for estimating intrinsic dimensionality are discussed with focus on global methods specifically 
  fractal-based methods.  A fractal-based approach using the Grassberger-Procaccia (GP) algorithm is discussed and as the GP algorithm doesn't
- preform well on high dimensionality datasets, an empirical procedure that improves the orignal alogrithm has been described.
+ preform well on high dimensionality datasets, an empirical procedure that improves the orignal alogrithm is described.
 \end{abstract}
 % IEEEtran.cls defaults to using nonbold math in the Abstract.
 % This preserves the distinction between vectors and scalars. However,
@@ -499,7 +499,7 @@ Dimensionality estimations of datasets is an important problem in the field of p
 \IEEEPARstart{I}{n} pattern recognition problems, data is represented as vectors 
 of dimension \(d\). The data is then embedded in the vector space \( \mathbb{R}^d \) 
 but this does not mean that the intrinsic dimensionality (ID) of the dataset is \(d\). 
-The ID of a data set is the minimum number of free variables needed to represent the data without information 
+The ID of a dataset is the minimum number of free variables needed to represent the data without information 
 loss. 
 
 % You must have at least 2 lines in the paragraph with the drop letter
@@ -525,8 +525,8 @@ data manifold. The definition of topological dimension was given by Brouwer
 \cite{Brouwer75} in 1913. Topological dimension is the basis dimension of the local linear
 approximation of the hypersurface on which the data resides, i.e. the tangent
 space. The topological dimension is the number of dimensions of the tangent space at each point.
-For example, a sphear has a two-dimensional tangent space that can also be viewd as a two-dimensional manifold
- and since the ID of a sphear is three, the topological dimension represent the lower bound of ID. 
+For example, a sphere has a two-dimensional tangent space that can also be viewd as a two-dimensional manifold
+ and since the ID of a sphere is three, the topological dimension represent the lower bound of ID. 
 Sometimes the topological is simply called local dimension, this is why the methods which estimate topological dimensions are 
 called local methods. 
 The basic algorithm to estimate the topological 
@@ -541,16 +541,16 @@ The alogrithm is based on the observation that for the vectors embedded in a lin
 the dimension is equal to the number of non-zero eigenvalues of the covariance matrix. 
 The basic idea of the algorithm is to examine the data in many small subregions and from this estimate 
 the intrinsic dimensionality. For each region the eigenvalues of the local convariance matrix are computed. 
-Then, The eigenvalues are normalized by dividing them by the largest eigenvalue. The intrinsic dimensionality is 
-then defined as the number of normalized eigenvalues that are larger that a threshold \(T\). The values \(T\) is 
-based on heuristic approach such as 0.05 and 0.01. It is not possible to fix the threshold values which would be best 
+Then, the eigenvalues are normalized by dividing them by the largest eigenvalue. The intrinsic dimensionality is 
+then defined as the number of normalized eigenvalues that are larger than a threshold \(T\). The value \(T\) is 
+based on heuristic approach. Typical values are 0.05 and 0.01. It is not possible to fix the threshold values which would be best 
 for every problem.
 
 
 \subsection{The Near Neighbor Algorithm}
 
-The use of near neighbor algorthm to estimate ID was first done by Trunk \cite{Trunk76}. This method consist to following steps
-An initial value of an integer parameter k is chosen and the k nearest neighbors to each patternthe given data set are identified. 
+The use of near neighbor algorthm to estimate ID was first done by Trunk \cite{Trunk76}. This method consists of following steps: 
+An initial value of an integer parameter \(k\) is chosen and the k nearest neighbors to each pattern in the given dataset are identified. 
 The subspace spanning the vectors from the \(i^{th}\) pattern to its k nearest neighbors is constructed for all patterns.
 The angle between the \((k + 1)^{th}\) near neighbor of pattern i and the subspace constructed
 for pattern i is then computed for all i. If the average of these angles is below
@@ -586,7 +586,7 @@ Principal Component Analysis (PCA) \cite{Kirby01, Jollife86} is a widely used li
 PCA projects the data along the directions of maximal variance. The method
 consists of computing eigenvalues and eigenvectors of the covariance matrix of
 data. Each of the eigenvectors is called a principal component.  ID is given by
-the number of the non-null eigenvalues. But there are some problems, PCA is an inadequate estimator, since it tends to overestimate the ID [17].
+the number of the non-null eigenvalues. But there are some problems, PCA is an inadequate estimator, since it tends to overestimate the ID \cite{Bishop95}.
 As shown in Fig. 1, a data set formed by points lying on a circumference for PCA has dimension 2 rather than 1.
 
 
@@ -600,9 +600,9 @@ As shown in Fig. 1, a data set formed by points lying on a circumference for PCA
 \end{figure}
 
 To solve this problem, non-linear algorithms have been proposed. There are two different approaches to get a non-linear PCA: 
-an autoassociative approach (Nonlinear PCA) [5,18] and the one based on the use of Mercer kernels (Kernel PCA) [19].
-Nonlinear PCA is performed by means of a five-layers neural network. The
-neural net has a typical bottleneck structure, shown in Fig. 2. 
+an autoassociative approach (Nonlinear PCA) \cite{Kirby01} and the one based on the use of Mercer kernels (Kernel PCA) \cite{Muller98}. 
+Nonlinear PCA can be performed by means of a five-layers neural network. 
+The neural net has a typical bottleneck structure, shown in Fig. 2. 
 
 \begin{figure}[!t]
   \centering
@@ -628,15 +628,15 @@ The performance of the method is heavily influenced by the kernel choice \cite{C
 Moreover, due to the data noise, last eigenvalues, even if very small, are not null. 
 Therefore it is necessary to ignore the eigenvalues whose magnitude is lower than a threshold value that can be only fixed in a heuristic way.
 Among projection techniques it is worth mentioning the Whitney reduction network recently proposed by Broomhead and Kirby \cite{Kirby01,Kirby2000}. 
-This method is based on Whitney’s concept of good projection [26], namely a projection obtained by means of an injective mapping. 
+This method is based on Whitney’s concept of good projection \cite{Whitney36}, namely a projection obtained by means of an injective mapping. 
 An injective mapping between two sets \(U\) and \(V\) is a mapping that associate a unique element of \(V\) to each element of \(U\) . As
 pointed out in \cite{Kirby01}, finding projections, by means of injective mappings, can be difficult and can sometimes involve empirical considerations.
 
 \subsection{Multidimensional Scaling Methods}
-Multidimensional Scaling (MDS) [27,28] methods are projection techniques that tend to preserve the distance among data as much as possible. 
-Therefore data that are close in the original data set should be projected in such a way that their projections, 
+Multidimensional Scaling (MDS) methods are projection techniques that tend to preserve the distance among data as much as possible. 
+Therefore data that is close in the original data set should be projected in such a way that their projections, 
 in the new space (output space), are still close. Among multidimensional scaling algorithms, 
-the best known example is MDSCAL, by Kruskal [29] and Shepard [30]. The criterion for the goodness of the projection used by MDSCAL is the \(stress\).
+the best known example is MDSCAL, by Kruskal \cite{Kruskal64} and Shepard \cite{Shepard62}. The criterion for the goodness of the projection used by MDSCAL is the \(stress\).
 
 This depends only on the distances between data. When the rank order of the distances in the 
 output space is the same as the rank order of the distances in the original data space then the \(stress\) is zero.
@@ -661,18 +661,17 @@ Kruskal and Shepard’s algorithm presents a main drawback. The knee or the flat
 \section{Fractal-Based Methods}
 Fractal dimension is a statistical quantity that gives an indication of how completely a 
 geometric object appears to fill space as one zooms down to finer and finer scales.
-It is commonly used in image analysis [33] and chaos theory [41].
-Fractal-based techniques are global methods that have been successfully ap-
-plied to estimate the attractor dimension of the underlying dynamic system
-generating time series [44].
-It has also been applied in machine learning and data mining [2], [4]. The idea behind that, is to use the fractal dimension of a data set 
-as an estimate of its intrinsic dimension. As defined by Fukunaga [9], if all elements of a 
+It is commonly used in image analysisand chaos theory.
+Fractal-based techniques are global methods that have been successfully applied to estimate 
+the attractor dimension of the underlying dynamic system generating time series.
+It has also been applied in machine learning and data mining \cite{Bhavani08}, \cite{CamastraOct2002}. The idea behind that, is to use the fractal dimension of a data set 
+as an estimate of its intrinsic dimension. As defined by Fukunaga \cite{Fukunaga82}, if all elements of a 
 \(d\)-dimensional data set lie entirely within an \(m\)-dimensional subspace then the data set has an intrinsic dimension of \(m (m < d)\).
 From this, it can also be said that only \(m\) independent variables are requried to describe the data set without any information loss.
 A number of methods can be used for fractal dimension calculation but the most popular ones are \(Box-Counting\) and \(Correlation\) dimension.
 
 \subsection{Box-Counting Dimension}
-The box-counting dimension is a simplified version of Haussdorff dimension [5]. 
+The box-counting dimension is a simplified version of Haussdorff dimension. 
 The Box-Counting dimension \(D_B\) of a set \(\Omega\) is defined as follows:
 if \(v(r)\) is the number of the boxes of size \(r\) needed to cover \(\Omega\), then \(D_B\) is
 
@@ -706,12 +705,12 @@ where \(I\) is an indicator function then the Correlation dimension \(D\) of \(\
   D = \lim_{r\to 0}\frac{\ln(C_m(r))}{\ln(r)}
 \end{equation}
 
-It has been proven [11] that the correlation dimension is a lower bound of the box-counting dimension, but, because of noise, 
+It has been proven \cite{Grassberger83} that the correlation dimension is a lower bound of the box-counting dimension, but, because of noise, 
 the difference between the two is negligible in real applications.  
-Some methods [28], [27] have been studied to obtain an optimal estimate for the correlation dimension, but all of these 
+Some methods \cite{Smith92,Takens85} have been studied to obtain an optimal estimate for the correlation dimension, but all of these 
 techniques work only when the correlation integral assumes the given form in the equation (\ref{eq-correlational-1}).
-These methods generally require some heuristics to set the radius r [30].
-Therefore, Camastra and Vinciarelli [1S] used the original procedure (GP algorithm) proposed by Grassberger and Procaccia 
+These methods generally require some heuristics to set the radius \(r\).
+Therefore, Camastra and Vinciarelli \cite{CamastraVinciarelli02} used the original procedure (GP algorithm) proposed by Grassberger and Procaccia 
 that consists of plotting \(\ln(C_m(r))\) versus \(\ln(r)\) and measuring the slope of the linear part of
 the curve (\ref{fig_plot_correlation}).
 
@@ -722,7 +721,7 @@ the curve (\ref{fig_plot_correlation}).
   \label{fig_plot_correlation}
 \end{figure}
 
-It has been proven [6], [26] that, in order to get an accurate 
+It has been proven \cite{Eckmann92, Smith88} that, in order to get an accurate 
 estimate of the dimension D, the set cardinality \(N\) has to satisfy the following inequality
 
 \begin{equation}
@@ -817,8 +816,8 @@ Correspondence to each value, a pair \((d, D)\) was calculated for
   d \in \{2, 3, 5, 10, 15, 18, 20, 25, 28, 30, 33, 35, 38, 40, 43, 45, 48, 50\}
 \end{equation}
 
-The plot function is estimated by a multilayer-perceptron (MLP) [1]. 
-Its structure was set up by means of the \(Bayesian information criterion\) [25].
+The plot function is estimated by a multilayer-perceptron (MLP) \cite{Bishop95}. 
+Its structure was set up by means of the \(Bayesian information criterion\) \cite{Schwartz78}.
 The resulting reference curves can be seen in Fig. \ref{fig_reference_plot}
 In order to test the method, several sets (with cardinalities corresponding to the values indicated above) were created 
 composed of random points generated in hypercubes in spaces with dimension 8 and 23. These sets were assumed to have ID 8 and 23, 
@@ -848,12 +847,12 @@ corresponding to the same cardinality as the set being measured was used to comp
 
 The table shows the dimension estimation obtained with the GP algorithm and with the empirical procedure proposed here.
 Indeed, a remarkable improvement is obtained when the cardinality is low. Afterwards, in order to validate the EP procedure, 
-the data set \(A\) [14] and \(D\) [23] of the Santa Fe time series competition were considered.
+the data set \(A\) \cite{Tang94} and \(D\) \cite{Pineda94} of the Santa Fe time series competition were considered.
 Data Set \(A\) is a real data time series generated by a Lorenz-like chaotic system, implemented by \(NH_3-FIR\) lasers. 
 The data set D is a synthetic time series generated by a particle motion, simulated on a computer, with nine freedom degrees. 
 The goal of the experimentation was to estimate, with the GP procedure, the attractor dimension of time series \(A\) and \(D\).
 
-In order to estimate the attractor dimension, they used the method of delays [17], [22] to the data set \(A\), 
+In order to estimate the attractor dimension, they used the method of delays \cite{Kaplan95, Ott93} to the data set \(A\), 
 considering its first 1,000, 2,000, 5,000, 10,000 points. The results, obtained with the GP and EP algorithms, are reported in Table \ref{tbl_gp_ep_santa}. 
 
 
